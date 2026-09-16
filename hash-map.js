@@ -28,6 +28,51 @@ class HashMap {
     }
     bucket.push([key, value]);
   }
+
+  get(key) {
+    let index = this.hash(key);
+    let bucket = this.buckets[index];
+
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i][0] === key) {
+        return bucket[i][1];
+      }
+    }
+    return undefined;
+  }
+
+  has(key) {
+    let index = this.hash(key);
+    let bucket = this.buckets[index];
+
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i][0] === key) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  remove(key) {
+    let index = this.hash(key);
+    let bucket = this.buckets[index];
+
+    for (let i = 0; i < bucket.length; i++) {
+      if (bucket[i][0] === key) {
+        bucket.splice(i, 1);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  length() {
+    let sum = 0;
+    for (let i = 0; i < this.buckets.length; i++) {
+      sum += this.buckets[i].length;
+    }
+    return sum;
+  }
 }
 
 const test = new HashMap();
