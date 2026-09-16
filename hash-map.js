@@ -73,6 +73,21 @@ class HashMap {
     }
     return sum;
   }
+
+  clear() {
+    this.capacity = 16;
+    this.buckets = Array.from(new Array(this.capacity), () => []);
+  }
+
+  keys() {
+    let keys = [];
+    for (let i = 0; i < this.buckets.length; i++) {
+      for (let j = 0; j < this.buckets[i].length; j++) {
+        keys.push(this.buckets[i][j][0]);
+      }
+    }
+    return keys;
+  }
 }
 
 const test = new HashMap();
